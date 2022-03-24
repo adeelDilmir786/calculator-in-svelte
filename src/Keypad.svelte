@@ -23,7 +23,7 @@
 	<button on:click={select(0)}>0</button>
 	<button disabled={!value} on:click={submit}>=</button>
 </div>
-
+<!-- key pad is add -->
 <div class="keypad-operator">
 	<button on:click={select('/')}>/</button>
 	<button on:click={select('*')}>*</button>
