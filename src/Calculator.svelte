@@ -119,8 +119,10 @@ console.log(inputArray);
         // console.log(view);
         // console.log(eval(pin))
         console.log(inputArray)
-        view=eval(view);
-		pin=eval(view);
+        view =inputArray[0];
+        pin=inputArray[0];
+        // view=eval(view);
+		// pin=eval(view);
         // alert(`submitted ${pin}`);
 	}
 
