@@ -2,10 +2,18 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let value = '';
+	export let inputArrayValue =[];
 
 	const dispatch = createEventDispatcher();
 
-	const select = num => () => value += num;
+	const select = num => () => {
+	if(inputArrayValue.length===1){
+		value=num.toString();
+		inputArrayValue=[];
+	}else{
+		value += num
+	}
+	};
 	const clear  = () => value = '';
 	const submit = () => dispatch('submit');
     const keyPad=['1','2','3','4','5','6','7','8','9']

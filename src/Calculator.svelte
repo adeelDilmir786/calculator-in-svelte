@@ -1,6 +1,6 @@
 <script>
 	import Keypad from './Keypad.svelte';
-
+    let inputArray=[];
 	let pin;
 	$: view = pin ?pin:'0'
 
@@ -23,7 +23,6 @@
        } 
    
        let previousIndex='';
-       let inputArray=[];
 
        for(let i=0 ; i< view.length;i++){
         
@@ -61,7 +60,6 @@ console.log(inputArray);
            const indexOfMultiplication= inputArray.indexOf('*');
            let index;
            let ans;
-           console.log('Div',indexOfDivision,'Mul',indexOfMultiplication)
            if(indexOfDivision===-1&&indexOfMultiplication===-1){
              operation='+';
              continue;
@@ -69,19 +67,15 @@ console.log(inputArray);
              
              ans=multiplication(inputArray[indexOfMultiplication-1],inputArray[indexOfMultiplication+1]);
              index=indexOfMultiplication;
-             console.log('1*',ans)
             }else if(indexOfMultiplication===-1){              
              ans=division(inputArray[indexOfDivision-1],inputArray[indexOfDivision+1]);
-             console.log('2/',ans)
              index=indexOfDivision;
             }else if(indexOfDivision<indexOfMultiplication){
                 ans=division(inputArray[indexOfDivision-1],inputArray[indexOfDivision+1]);
                 index=indexOfDivision;
-                console.log('3/',ans)
             }else {
                 ans=multiplication(inputArray[indexOfMultiplication-1],inputArray[indexOfMultiplication+1]);
                 index=indexOfMultiplication;
-                console.log('4*',ans)
             }
             inputArray.splice(index-1,3,ans)
             console.log(inputArray)
@@ -136,7 +130,7 @@ const sub=(a,b)=>a-b;
 <div>
 <h1 style="color: {pin ? '#333' : '#ccc'}">{view}</h1>
 
-<Keypad bind:value={pin} on:submit={handleSubmit}/>
+<Keypad bind:value={pin} bind:inputArrayValue={inputArray}  on:submit={handleSubmit}/>
 </div>
 
 <style>
